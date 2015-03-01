@@ -82,9 +82,11 @@ body {
   right: 0;
   font-size: 16px; }
   .am-pm .am, .am-pm .pm {
-    display: none; }
+    color: #363636; }
+    .am-pm .am:first-child, .am-pm .pm:first-child {
+      margin-bottom: 7px; }
     .am-pm .am.active, .am-pm .pm.active {
-      display: block; }
+      color: #e0e0e0; }
 
 .number {
   width: 40px;

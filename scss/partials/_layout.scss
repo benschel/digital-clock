@@ -1,8 +1,10 @@
 // Layout
 
-$width      : 40px;
-$height     : 80px;
-$segWidth   : 5px;
+$width              : 40px;
+$height             : 80px;
+$seg-width          : 5px;
+$inactive-color     : #363636;
+$active-color       : #e0e0e0;
 
 html, body {
     height: 100%;
@@ -12,7 +14,7 @@ html, body {
 body {
     font-family: Helvetica, Arial, sans-serif;
     background: #212121;
-    color: #e0e0e0;
+    color: $active-color;
 }
 
 #clock {
@@ -47,9 +49,11 @@ body {
     font-size: 16px;
 
     .am, .pm {
-        display: none;
+        color: $inactive-color;
 
-        &.active { display: block; }
+        &:first-child { margin-bottom: 7px; }
+
+        &.active { color: $active-color; }
     }
 }
 
@@ -60,23 +64,23 @@ body {
     top: 0;
 
     %vert {
-        width: $segWidth;
+        width: $seg-width;
         height: $height / 2;
     }
 
     %horizontal {
         width: $width;
-        height: $segWidth;
+        height: $seg-width;
     }
 
     span {
         display: block;
-        background: #363636;
+        background: $inactive-color;
         position: absolute;
         z-index: 1;
 
         &.active {
-            background: #e0e0e0;
+            background: $active-color;
             z-index: 5;
         }
 
