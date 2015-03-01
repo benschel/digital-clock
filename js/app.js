@@ -57,6 +57,9 @@ $(document).ready(function() {
         renderNumber(minDigit1, 'min-1');
         renderNumber(minDigit2, 'min-2');
 
+        // Clear am or pm 
+        $('.am-pm p').removeClass('active');
+        
         $('.' + amOrPm).addClass('active');
     };
 
