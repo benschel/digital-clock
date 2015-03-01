@@ -19,6 +19,10 @@ $(document).ready(function() {
     };
 
     var renderNumber = function(number, digitPosition) {
+        if (number === null) {
+            return;
+        }
+        
         var matrix = numberData[number];
 
         for (i = 0; i < matrix.length; i++) {
@@ -39,7 +43,7 @@ $(document).ready(function() {
         hourDigit1 = 1;
         hourDigit2 = 2;
     } else {
-        hourDigit1 = 0;
+        hourDigit1 = null;
         hourDigit2 = hour;
     }
 
