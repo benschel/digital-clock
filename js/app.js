@@ -1,10 +1,6 @@
 $(document).ready(function() {
-    var hourDigit1, hourDigit2, minDigit1, minDigit2;
-    var date = new Date();
-    var hour = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
-    var amOrPm = date.getHours() >= 12 ? 'pm' : 'am';
-    var minutes = date.getMinutes();
-
+    var hourDigit1, hourDigit2, minDigit1, minDigit2, hour, amOrPm, minutes, seconds, delay;
+    
     var numberData = {
         1 : [0, 1, 1, 0, 0, 0, 0],
         2 : [1, 1, 0, 1, 1, 0, 1],
@@ -36,17 +32,43 @@ $(document).ready(function() {
         return number.toString().split('').map(Number);
     };
 
-    hourDigit1 = hour > 9 || hour === 0 ? 1 : null;
-    hourDigit2 = hour > 9 ? hour - 10 : (hour === 0 ? 2 : hour);
+    var getLatestTime = function() {
+        var date = new Date();
+        hour = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
+        amOrPm = date.getHours() >= 12 ? 'pm' : 'am';
+        minutes = date.getMinutes();
+        seconds = date.getSeconds();
+    };
 
-    minDigit1 = minutes > 9 ? splitNumber(minutes)[0] : 0;
-    minDigit2 = minutes > 9 ? splitNumber(minutes)[1] : minutes;
+    var renderClock = function() {
+        getLatestTime();
 
-    renderNumber(hourDigit1, 'hour-1');
-    renderNumber(hourDigit2, 'hour-2');
-    renderNumber(minDigit1, 'min-1');
-    renderNumber(minDigit2, 'min-2');
+        hourDigit1 = hour > 9 || hour === 0 ? 1 : null;
+        hourDigit2 = hour > 9 ? hour - 10 : (hour === 0 ? 2 : hour);
 
-    $('.' + amOrPm).addClass('active');
+        minDigit1 = minutes > 9 ? splitNumber(minutes)[0] : 0;
+        minDigit2 = minutes > 9 ? splitNumber(minutes)[1] : minutes;
 
+        // Clear all active segments
+        $('.number span').removeClass('active');
+
+        renderNumber(hourDigit1, 'hour-1');
+        renderNumber(hourDigit2, 'hour-2');
+        renderNumber(minDigit1, 'min-1');
+        renderNumber(minDigit2, 'min-2');
+
+        $('.' + amOrPm).addClass('active');
+    };
+
+    // Initial Render
+    renderClock();
+
+    delay = (60 - seconds) * 1000;
+    setTimeout(function() {
+        renderClock();
+
+        setInterval(function() {
+            renderClock();
+        }, 60000);
+    }, delay);
 });
