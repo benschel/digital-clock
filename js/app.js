@@ -21,7 +21,7 @@ $(document).ready(function() {
 
         var matrix = numberData[number];
 
-        for (i = 0; i < matrix.length; i++) {
+        for (var i = 0; i < matrix.length; i++) {
             if (matrix[i]) {
                 $('.' + digitPosition + ' span').eq(i).addClass('active');
             }
@@ -57,9 +57,9 @@ $(document).ready(function() {
         renderNumber(minDigit1, 'min-1');
         renderNumber(minDigit2, 'min-2');
 
-        // Clear am or pm 
+        // Clear am or pm
         $('.am-pm p').removeClass('active');
-        
+
         $('.' + amOrPm).addClass('active');
     };
 
