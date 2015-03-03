@@ -21,7 +21,7 @@ $(document).ready(function() {
 
         var matrix = numberData[number];
 
-        for (i = 0; i < matrix.length; i++) {
+        for (var i = 0; i < matrix.length; i++) {
             if (matrix[i]) {
                 $('.' + digitPosition + ' span').eq(i).addClass('active');
             }
