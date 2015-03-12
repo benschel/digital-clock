@@ -184,12 +184,14 @@ $(document).ready(function() {
     var $options         = $('#options');
     var $optionSwitch    = $('#options .label-switch input');
 
+    var animationClasses = 'fade-in-right fade-in-left fade-out-right fade-out-left';
+
     DigitalClock.init();
     AnalogClock.init();
 
     $digitalBtn.on('click', function() {
 
-        $clockContainers.removeClass();
+        $clockContainers.removeClass(animationClasses);
         $digitalClock.addClass('fade-in-left');
         $analogClock.addClass('fade-out-right');
 
@@ -201,7 +203,7 @@ $(document).ready(function() {
     });
 
     $analogBtn.on('click', function() {
-        $clockContainers.removeClass();
+        $clockContainers.removeClass(animationClasses);
         $analogClock.addClass('fade-in-right');
         $digitalClock.addClass('fade-out-left');
 
