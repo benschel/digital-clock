@@ -1,2 +1,9 @@
 @import "partials/reset";
+@import "bourbon/bourbon";
+
+@import "partials/clocks/digital-clock";
+@import "partials/clocks/analog-clock";
+
+@import "partials/animations";
+@import "partials/ui";
 @import "partials/layout";

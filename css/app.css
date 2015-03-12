@@ -41,6 +41,134 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+.fade-in {
+  -webkit-animation: fade-in 1s ease-in forwards; }
+
+.fade-out {
+  -webkit-animation: fade-out 1s ease-out forwards; }
+
+.fade-in-left {
+  -webkit-animation: fade-in-left 0.5s ease-in forwards; }
+
+.fade-in-right {
+  -webkit-animation: fade-in-right 0.5s ease-in forwards; }
+
+.fade-out-left {
+  -webkit-animation: fade-out-left 0.5s ease-out forwards; }
+
+.fade-out-right {
+  -webkit-animation: fade-out-right 0.5s ease-out forwards; }
+
+@-webkit-keyframes rotate {
+  100% {
+    transform: rotateZ(360deg); } }
+@keyframes rotate {
+  100% {
+    transform: rotateZ(360deg); } }
+@-webkit-keyframes fade-in {
+  100% {
+    opacity: 1; } }
+@-webkit-keyframes fade-out {
+  100% {
+    opacity: 0; } }
+@-webkit-keyframes fade-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-300%); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@-webkit-keyframes fade-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(300%); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@-webkit-keyframes fade-out-left {
+  0% {
+    opacity: 1;
+    transform: translateX(0); }
+  100% {
+    opacity: 0;
+    transform: translateX(-300%); } }
+@-webkit-keyframes fade-out-right {
+  0% {
+    opacity: 1;
+    transform: translateX(0); }
+  100% {
+    opacity: 0;
+    transform: translateX(300%); } }
+.label-switch {
+  border-radius: 32px;
+  cursor: pointer;
+  display: inline-block;
+  height: 32px;
+  position: relative;
+  width: 52px; }
+  .label-switch input[type="checkbox"] {
+    display: none; }
+    .label-switch input[type="checkbox"] + .checkbox {
+      -webkit-transition: all 0.3s ease;
+      -moz-transition: all 0.3s ease;
+      transition: all 0.3s ease;
+      background: #4e4e4e;
+      border-radius: 32px;
+      border: none;
+      cursor: pointer;
+      height: 32px;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      width: 52px;
+      z-index: 0; }
+      .label-switch input[type="checkbox"] + .checkbox:before {
+        position: absolute;
+        top: 2px;
+        right: 0;
+        bottom: 0;
+        left: 2px;
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        background: #656565;
+        border-radius: 32px;
+        content: "";
+        height: 28px;
+        width: 48px;
+        z-index: 1; }
+      .label-switch input[type="checkbox"] + .checkbox:after {
+        position: absolute;
+        top: 2px;
+        right: 0;
+        bottom: 0;
+        left: 2px;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        height: 28px;
+        width: 28px;
+        background: #e5e5e5;
+        border-radius: 28px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+        content: "";
+        z-index: 2; }
+    .label-switch input[type="checkbox"]:checked + .checkbox {
+      background: #477DCA; }
+      .label-switch input[type="checkbox"]:checked + .checkbox:before {
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        -ms-transform: scale(0);
+        -o-transform: scale(0);
+        transform: scale(0); }
+      .label-switch input[type="checkbox"]:checked + .checkbox:after {
+        left: 22px; }
+
 html, body {
   height: 100%;
   min-height: 100%; }
@@ -48,84 +176,86 @@ html, body {
 body {
   font-family: Helvetica, Arial, sans-serif;
   background: #212121;
-  color: #e0e0e0; }
+  color: #e0e0e0;
+  font-size: 16px;
+  overflow: hidden; }
 
-#clock {
+.hidden {
+  display: none; }
+
+#digital-clock {
   width: 260px;
   height: 80px;
   position: relative;
-  margin: 0 auto;
   top: 50%;
-  transform: translateY(-50%); }
-  #clock .hour-1 {
+  left: 51%;
+  margin-top: -40px;
+  margin-left: -130px; }
+  #digital-clock .hour-1 {
     left: 0; }
-  #clock .hour-2 {
+  #digital-clock .hour-2 {
     left: 50px; }
-  #clock .min-1 {
+  #digital-clock .min-1 {
     left: 130px; }
-  #clock .min-2 {
+  #digital-clock .min-2 {
     left: 180px; }
-
-.colon {
-  position: absolute;
-  top: 0;
-  left: 100px;
-  font-size: 72px;
-  height: 80px;
-  line-height: 80px;
-  animation: blink 1.5s ease-out infinite;
-  -webkit-animation: blink 1.5s ease-out infinite; }
-
-.am-pm {
-  position: absolute;
-  bottom: -5px;
-  right: 0;
-  font-size: 16px; }
-  .am-pm .am, .am-pm .pm {
-    color: #363636; }
-    .am-pm .am:first-child, .am-pm .pm:first-child {
-      margin-bottom: 7px; }
-    .am-pm .am.active, .am-pm .pm.active {
-      color: #e0e0e0; }
-
-.number {
-  width: 40px;
-  height: 80px;
-  position: absolute;
-  top: 0; }
-  .number span:nth-of-type(2), .number span:nth-of-type(3), .number span:nth-of-type(5), .number span:nth-of-type(6) {
-    width: 5px;
-    height: 40px; }
-  .number span:nth-of-type(1), .number span:nth-of-type(4), .number span:nth-of-type(7) {
-    width: 40px;
-    height: 5px; }
-  .number span {
-    display: block;
-    background: #363636;
+  #digital-clock .colon {
     position: absolute;
-    z-index: 1; }
-    .number span.active {
-      background: #e0e0e0;
-      z-index: 5; }
-    .number span:nth-of-type(1) {
-      top: 0; }
-    .number span:nth-of-type(2) {
-      top: 0;
-      right: 0; }
-    .number span:nth-of-type(3) {
-      bottom: 0;
-      right: 0; }
-    .number span:nth-of-type(4) {
-      bottom: 0; }
-    .number span:nth-of-type(5) {
-      bottom: 0;
-      left: 0; }
-    .number span:nth-of-type(6) {
-      top: 0;
-      left: 0; }
-    .number span:nth-of-type(7) {
-      top: 40px; }
-
+    top: 0;
+    left: 100px;
+    font-size: 72px;
+    height: 80px;
+    line-height: 80px;
+    animation: blink 1.5s ease-out infinite;
+    -webkit-animation: blink 1.5s ease-out infinite; }
+  #digital-clock .am-pm {
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+    font-size: 16px; }
+    #digital-clock .am-pm .am, #digital-clock .am-pm .pm {
+      color: #363636; }
+      #digital-clock .am-pm .am:first-child, #digital-clock .am-pm .pm:first-child {
+        margin-bottom: 7px; }
+      #digital-clock .am-pm .am.active, #digital-clock .am-pm .pm.active {
+        color: #e0e0e0; }
+  #digital-clock .number {
+    width: 40px;
+    height: 80px;
+    position: absolute;
+    top: 0; }
+    #digital-clock .number span:nth-of-type(2), #digital-clock .number span:nth-of-type(3), #digital-clock .number span:nth-of-type(5), #digital-clock .number span:nth-of-type(6) {
+      width: 5px;
+      height: 40px; }
+    #digital-clock .number span:nth-of-type(1), #digital-clock .number span:nth-of-type(4), #digital-clock .number span:nth-of-type(7) {
+      width: 40px;
+      height: 5px; }
+    #digital-clock .number span {
+      display: block;
+      background: #363636;
+      position: absolute;
+      z-index: 1; }
+      #digital-clock .number span.active {
+        background: #e0e0e0;
+        z-index: 5; }
+      #digital-clock .number span:nth-of-type(1) {
+        top: 0; }
+      #digital-clock .number span:nth-of-type(2) {
+        top: 0;
+        right: 0; }
+      #digital-clock .number span:nth-of-type(3) {
+        bottom: 0;
+        right: 0; }
+      #digital-clock .number span:nth-of-type(4) {
+        bottom: 0; }
+      #digital-clock .number span:nth-of-type(5) {
+        bottom: 0;
+        left: 0; }
+      #digital-clock .number span:nth-of-type(6) {
+        top: 0;
+        left: 0; }
+      #digital-clock .number span:nth-of-type(7) {
+        top: 40px; }
 @keyframes blink {
   0% {
     opacity: 0; }
@@ -140,5 +270,114 @@ body {
     opacity: 0; }
   100% {
     opacity: 1; } }
+#analog-clock {
+  width: 35em;
+  height: 35em;
+  position: relative;
+  top: 50%;
+  margin: 0 auto;
+  margin-top: -17.5em;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(300%); }
+  #analog-clock.clock-face {
+    background: url(../images/ios_clock.svg) no-repeat center center;
+    background-size: 88%; }
+  #analog-clock:after {
+    background: #efefef;
+    border-radius: 50%;
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 5%;
+    height: 5%;
+    z-index: 10; }
+  #analog-clock .hours-container,
+  #analog-clock .minutes-container,
+  #analog-clock .seconds-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0; }
+  #analog-clock .hours-container {
+    -webkit-animation: rotate 43200s infinite steps(60);
+    animation: rotate 43200s infinite steps(60); }
+  #analog-clock .minutes-container {
+    transition: transform 0.3s cubic-bezier(0.4, 2.08, 0.55, 0.44); }
+  #analog-clock .seconds-container {
+    transition: transform 0.2s cubic-bezier(0.4, 2.08, 0.55, 0.44); }
+  #analog-clock .hours {
+    position: absolute;
+    background: #efefef;
+    height: 18%;
+    width: 1.5%;
+    left: 49.2%;
+    top: 32%;
+    transform-origin: 50% 100%; }
+  #analog-clock .minutes {
+    position: absolute;
+    background: #efefef;
+    height: 35%;
+    width: 1.5%;
+    left: 49%;
+    top: 15%;
+    transform-origin: 50% 100%; }
+  #analog-clock .seconds {
+    background: #e31919;
+    position: absolute;
+    height: 44%;
+    width: 0.5%;
+    left: 49.5%;
+    top: 15.3%;
+    transform-origin: 50% 80%;
+    z-index: 8; }
+    #analog-clock .seconds:before {
+      background: #e31919;
+      position: absolute;
+      border-radius: 50%;
+      width: 15px;
+      height: 15px;
+      bottom: -10px;
+      left: -7.2px;
+      content: "";
+      z-index: 10; }
+
+.nav {
+  position: absolute;
+  bottom: 40px;
+  text-align: center;
+  width: 100%; }
+  .nav li {
+    color: #bbbbbb;
+    cursor: pointer;
+    border-bottom: 1px solid #ababab;
+    padding-bottom: 4px;
+    display: inline-block;
+    transition: all 0.25s ease-in; }
+    .nav li:hover, .nav li.active {
+      color: #ffffff; }
+    .nav li:first-child {
+      margin-right: 20px; }
+
+#options {
+  width: 200px;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  color: #bbbbbb;
+  opacity: 0; }
+  #options::after {
+    clear: both;
+    content: "";
+    display: table; }
+  #options .label-switch {
+    float: left; }
+  #options h6 {
+    float: left;
+    margin-left: 20px;
+    padding-top: 10px; }
 
 /*# sourceMappingURL=app.css.map */

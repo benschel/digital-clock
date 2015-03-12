@@ -15,124 +15,83 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     background: #212121;
     color: $active-color;
+    font-size: 16px;
+    overflow: hidden;
 }
 
-#clock {
+.hidden {
+    display: none;
+}
+
+#digital-clock {
     width: 260px;
     height: 80px;
     position: relative;
-    margin: 0 auto;
     top: 50%;
-    transform: translateY(-50%);
+    left: 51%;
+    margin-top: -40px;
+    margin-left: -130px;
 
-    .hour-1 { left: 0; }
-    .hour-2 { left: ($width * 1) + 10px; }
-    .min-1  { left: ($width * 2) + 50px; }
-    .min-2  { left: ($width * 3) + 60px; }
+    @include digital-clock;
 }
 
-.colon {
-    position: absolute;
-    top: 0;
-    left: 100px;
-    font-size: 72px;
-    height: $height;
-    line-height: $height;
-    animation: blink 1.5s ease-out infinite;
-    -webkit-animation: blink 1.5s ease-out infinite; 
-}
+#analog-clock {
+    $width: 35em;
+    $height: 35em;
 
-.am-pm {
-    position: absolute;
-    bottom: -5px;
-    right: 0;
-    font-size: 16px;
-
-    .am, .pm {
-        color: $inactive-color;
-
-        &:first-child { margin-bottom: 7px; }
-
-        &.active { color: $active-color; }
-    }
-}
-
-.number {
     width: $width;
     height: $height;
+    position: relative;
+    top: 50%;
+    margin: 0 auto;
+    margin-top: $height / -2;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(300%);
+
+    @include analog-clock;
+}
+
+.nav {
     position: absolute;
-    top: 0;
+    bottom: 40px;
+    text-align: center;
+    width: 100%;
 
-    %vert {
-        width: $seg-width;
-        height: $height / 2;
-    }
+    li {
+        color: #bbbbbb;
+        cursor: pointer;
+        border-bottom: 1px solid #ababab;
+        padding-bottom: 4px;
+        display: inline-block;
+        transition: all 0.25s ease-in;
 
-    %horizontal {
-        width: $width;
-        height: $seg-width;
-    }
-
-    span {
-        display: block;
-        background: $inactive-color;
-        position: absolute;
-        z-index: 1;
-
-        &.active {
-            background: $active-color;
-            z-index: 5;
+        &:hover, &.active {
+            color: #ffffff;
         }
 
-        &:nth-of-type(1) {
-            @extend %horizontal;
-            top: 0;
-        }
-
-        &:nth-of-type(2) {
-            @extend %vert;
-            top: 0;
-            right: 0;
-        }
-
-        &:nth-of-type(3) {
-            @extend %vert;
-            bottom: 0;
-            right: 0;
-        }
-
-        &:nth-of-type(4) {
-            @extend %horizontal;
-            bottom: 0;
-        }
-
-        &:nth-of-type(5) {
-            @extend %vert;
-            bottom: 0;
-            left: 0; 
-        }
-
-        &:nth-of-type(6) {
-            @extend %vert;
-            top: 0;
-            left: 0;
-        }
-
-        &:nth-of-type(7) {
-            @extend %horizontal;
-            top: $height / 2;
+        &:first-child {
+            margin-right: 20px;
         }
     }
 }
 
-@keyframes blink {
-    0%      { opacity: 0; }
-    25%     { opacity: 0; }
-    100%    { opacity: 1; }
-}
+#options {
+    width: 200px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    color: #bbbbbb;
+    opacity: 0;
+    @include clearfix;
 
-@-webkit-keyframes blink {
-    0%      { opacity: 0; }
-    25%     { opacity: 0; }
-    100%    { opacity: 1; }
+    .label-switch {
+        float: left;
+    }
+
+    h6 {
+        float: left;
+        margin-left: 20px;
+        padding-top: 10px;
+    }
 }

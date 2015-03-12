@@ -4,14 +4,14 @@
         <title>Digital Clock</title>
         <meta name="viewport" content="initial-scale=1">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="js/jquery.min.js"></script>
         <script src="js/app.js" type="text/javascript"></script>
 
         <link rel="stylesheet" type="text/css" href="css/app.css" />
     </head>
     <body>
-        <div id="clock">
-            <section class="hour-1 number">
+        <div id="digital-clock">
+            <div class="hour-1 number">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -19,8 +19,8 @@
                 <span></span>
                 <span></span>
                 <span></span>
-            </section>
-            <section class="hour-2 number">
+            </div>
+            <div class="hour-2 number">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -28,9 +28,9 @@
                 <span></span>
                 <span></span>
                 <span></span>
-            </section>
-            <section class="colon">:</section>
-            <section class="min-1 number">
+            </div>
+            <div class="colon">:</div>
+            <div class="min-1 number">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -38,8 +38,8 @@
                 <span></span>
                 <span></span>
                 <span></span>
-            </section>
-            <section class="min-2 number">
+            </div>
+            <div class="min-2 number">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -47,11 +47,37 @@
                 <span></span>
                 <span></span>
                 <span></span>
-            </section>
-            <section class="am-pm">
+            </div>
+            <div class="am-pm">
                 <p class="am">AM</p>
                 <p class="pm">PM</p>
-            </section>
+            </div>
         </div>
+
+        <div id="analog-clock">
+            <div class="hours-container">
+                <div class="hours"></div>
+            </div>
+            <div class="minutes-container">
+                <div class="minutes"></div>
+            </div>
+            <div class="seconds-container">
+                <div class="seconds"></div>
+            </div>
+        </div>
+
+        <ul class="nav">
+            <li class="digital active">Digital</li>
+            <li class="analog">Analog</li>
+        </ul>
+
+        <div id="options">
+            <label class="label-switch">
+                <input type="checkbox" />
+                <div class="checkbox"></div>
+            </label>
+            <h6>Show Clock Face</h6>
+        </div>
+
     </body>
 </html>
